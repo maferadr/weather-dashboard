@@ -1,0 +1,38 @@
+h1{
+    font-family: 'Vina Sans', sans-serif;
+    justify-content: center;
+    text-align: center;
+    padding: 2%;
+}
+
+h2{
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+
+}
+
+body{
+    background-image: url('/weather-dashboard/assets/img/weather-imgbg.jpg');
+    width: 100%;
+    min-height: 100vh;
+}
+
+.wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 106px;
+}
+
+.wave .shape-fill {
+    fill: #FFFFFF;
+}
