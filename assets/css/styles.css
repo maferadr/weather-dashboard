@@ -12,27 +12,76 @@ h2{
 }
 
 body{
-    background-image: url('/weather-dashboard/assets/img/weather-imgbg.jpg');
+    background-image: url('/weather-dashboard/assets/img/bg-weather.jpg');
     width: 100%;
     min-height: 100vh;
 }
 
 .wave {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
     line-height: 0;
+    transform: rotate(180deg);
 }
 
 .wave svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 106px;
+    height: 150px;
 }
 
 .wave .shape-fill {
-    fill: #FFFFFF;
+    fill: #ffffff9a;
+}
+
+.btnCities{
+    opacity: 0.3;
+}
+
+.btnCities:hover{
+    opacity: 0.7;
+}
+
+.col{
+    border-top: 1px solid rgba(0, 0, 0, 0.59);
+    padding: 3%;
+}
+
+.card{
+    padding: 2%;
+    opacity: 0.6;
+}
+
+.card-body{
+    font-family: 'Merriweather', serif;
+    justify-content: center;
+    text-align: center;
+    color: rgb(10, 57, 10);
+    font-size: 25px;
+}
+
+strong{
+    font-family: 'Playfair Display', serif;
+}
+
+.card-text{
+    padding: 15px 15px;
+    text-align: center;
+}
+
+h5, p{
+    font-size: 18px;
+    font-family: 'Manrope', sans-serif;    
+    color: black;
+}
+
+#forecast{
+    justify-content: end;
+    float: end;
+    flex-wrap: wrap;
+    /* width: 40%; */
 }
