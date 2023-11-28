@@ -11,6 +11,19 @@ h2{
 
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 100,
+  'GRAD' 0,
+  'opsz' 24;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 70px;
+  z-index: -1;
+}
+
 body{
     background-image: url('/weather-dashboard/assets/img/bg-weather.jpg');
     width: 100%;
@@ -79,9 +92,17 @@ h5, p{
     color: black;
 }
 
+.card-title{
+    color: white;
+}
+
 #forecast{
     justify-content: end;
     float: end;
     flex-wrap: wrap;
-    /* width: 40%; */
+}
+
+#forecast:nth-child(even) >*{
+    color: white;
+    
 }

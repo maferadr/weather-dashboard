@@ -6,18 +6,18 @@ var btnSearch = document.querySelector('#searchButton');
 var searchFormContainer = document.querySelector('#searchForm');
 var forecastDiv = document.querySelector('#forecast');
 
-//Card elements created inside of Search functions => User input's value
-//will match with API information and be displayed on the screen.
-
 function printSearch(){
-    //Call the requestAPI function.
+
+    //Card elements created inside of printSearch functions => User input's value
+    //will match with API information and be displayed on the screen.
 
     var liContainer = document.createElement('div');
     liContainer.classList.add('list-group');
 
-    //when they press in each saved cityBtn - info will be displayed.
+    //When they press in each saved cityBtn - info will be displayed.
     var btnCities = document.createElement('button');
     btnCities.classList.add('btnCities');
+    //Grab the values that the User is entering
     btnCities.textContent = inputValueEl.value;
     console.log(inputValueEl);
     btnCities.classList.add('list-group-item', 'list-group-item-action');
@@ -28,6 +28,7 @@ function printSearch(){
 
 }
 
+//Functions for the Search btn
 btnSearch.addEventListener('click', (e)=>{
     var city = inputValueEl.value;
     e.preventDefault()
@@ -35,9 +36,9 @@ btnSearch.addEventListener('click', (e)=>{
     getApi(city)
     searchApi(city);
     dailyForecast();
-    //They need to be saved in localStorage for Search History.
 })
 
+//We set up the API request function.
 function getApi(cityName){
     var apiKey = 'ec0ea5aae4cf2181b6d4de5b98e0bd90';
     var callApi = 'https://api.openweathermap.org/data/2.5/forecast?q=' + encodeURIComponent(cityName) + '&appid=' + apiKey;
@@ -58,11 +59,9 @@ function getApi(cityName){
     
 };
 
-
-//API call and request.
+//Elements will be created regarding the API call
 function searchApi(apiRes){
-    //Request from that API => 
-    // city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
+    // City name, date and weather conditions, the temperature, the humidity, and the Wind Speed.
         cityContainer.textContent = '';
         console.log(apiRes);
 
@@ -72,7 +71,6 @@ function searchApi(apiRes){
 
             var cityDisplayed = document.createElement('div');
             cityDisplayed.classList.add('card-body');
-            // cityDisplayed.classList.add('card-body').innerHTML += '<h5>City:</h5>' + apiRes.city[i].name;
 
             var textInfo = document.createElement('p');
             textInfo.classList.add('card-text');
@@ -83,31 +81,35 @@ function searchApi(apiRes){
             cardContainer.appendChild(cityDisplayed);
             cardContainer.appendChild(textInfo);
             cityDisplayed.textContent = apiRes.city.name;
+
+            //API parameters are catched and displayed on the screen.
             textInfo.innerHTML = '<strong>Humidity:</strong>' + apiRes.list[0].main.humidity + ' <strong>Temperature: </strong>' + apiRes.list[0].main.temp + ' <strong>Wind Speed: </strong>' + apiRes.list[0].wind.speed;    
-            }
-    // })
-    // .catch(function(error){
-    //     console.log('Error');
-    // })
+
+        }
 
 
 function dailyForecast(apiRes){
-
+    
+    forecastDiv.textContent = '';
+    //From the API reponse, we call through this function to display all the forecast information.
     for(var i = 0; i < apiRes.list.length; i++){
         var currentDay = dayjs();
         currentDay.format('DD-MM-YYYY');
+        //dayjs library is set up
         var dayCast = dayjs(apiRes.list[i].dt_txt).format('DD-MM-YYYY');
+        //This dayCast value is displaying just the 5 days forecast.
         console.log(dayCast)
 
+        //If the dayCast value is greater or equal than the current date, 5day forecast will be displayed instead of the each 3 hours format that 
+        //the API offers.
         if(dayCast >= currentDay){
             dayCast = apiRes.list[i];
         }
-    //We can call through this function to display all the forecast information.
     }
-
+    //For loop to create each forecast container with the information requested.
     for(var i = 0; i < dayCast.length; i++){
         var forecastContainer = document.createElement('div');
-        forecastContainer.classList.add('card');
+        forecastContainer.classList.add('col');
     
         var infoContainer = document.createElement('div');
         infoContainer.classList.add('card-body');
@@ -119,7 +121,7 @@ function dailyForecast(apiRes){
         //General Information - temperature, the humidity, and the wind speed.
         var temperature = document.createElement('p');
         temperature.innerHTML = '<strong>Temperature:</strong>' + apiRes.list[0].main.temp;
-        // conditions.classList.add('card-text').textContent = '';
+
         var humidity = document.createElement('p');
         humidity.innerHTML = '<strong>Humidity:</strong>' + apiRes.list[0].main.humidity;
 
@@ -129,13 +131,6 @@ function dailyForecast(apiRes){
         forecastDiv.append(forecastContainer); //Flex-wrap styles.
         forecastContainer.append(infoContainer);
         infoContainer.append(date, temperature, humidity, wind);
-
     }
 
 } 
-
-
-//Option selected function => will create a second card on the side displaying the city
-//information with the 5 day forecast.
-
-//API functionality and localStorage function needs to be fixed.
