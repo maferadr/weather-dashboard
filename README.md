@@ -16,7 +16,7 @@ WHEN he clicks on a city in the search history
 THEN HE is again presented with current and future conditions for that city.
 
 ## Deployment.
-
+https://maferadr.github.io/weather-dashboard/
 
 https://github.com/maferadr/weather-dashboard/assets/95540471/0428e9c7-7ed0-422b-9616-3a831a2bbda0
 
